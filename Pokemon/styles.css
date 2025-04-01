@@ -1,0 +1,15 @@
+#pokemon-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+#pokemon-list{
+    list-style: none;
+    padding: 0;
+}
+
+#pokemon-item{
+    margin-bottom: 5px;
+}

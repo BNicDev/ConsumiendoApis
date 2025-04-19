@@ -21,6 +21,7 @@ function cards(character) {
     contenedor.innerHTML = elementos.join('');
 }
 
+let charactersData = [];
 
 function fetchRM(){
     const url = 'https://rickandmortyapi.com/api/character';
@@ -34,9 +35,28 @@ function fetchRM(){
     })
 
     .then(data =>{
-        const datos = data.results
-        console.log(datos)
-        render(datos)
+        charactersData = data.results
+        render(charactersData)
     })
 }
-fetchRM()
+fetchRM();
+
+function searchCharacters(query) {
+    const filtered = charactersData.filter(character =>
+        character.name.toLowerCase().includes(query.toLowerCase())
+    );
+    render(filtered);
+}
+
+const searchInput = document.getElementById('search');
+const searchButton = document.getElementById('search-button');
+
+searchInput.addEventListener('input', ()=>{
+    const query = searchInput.value;
+    searchCharacters(query);
+})
+
+searchButton.addEventListener('click', () =>{
+    const query = searchInput.value;
+    searchCharacters(query);
+})
